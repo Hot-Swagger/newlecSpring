@@ -12,7 +12,18 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 인터셉터가 필요할때 거는 설정 -->
+	<mvc:annotation-driven>
+      <mvc:message-converters> <!-- @ResponseBody로 String 처리할때 한글처리 -->
+         <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <property name="supportedMediaTypes">
+               <list>
+                  <value>text/html;charset=UTF-8</value>
+               </list>
+            </property>
+         </bean>
+      </mvc:message-converters>
+    </mvc:annotation-driven>
     <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
     
     <!-- 어노테이션으로 컨트롤러 설정하는 방법 -->
@@ -23,31 +34,14 @@
       <property name="suffix" value=".jsp" />
     </bean>
     
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
-       <property name="driverClassName"  value="com.mysql.jdbc.Driver"/>
-       <property name="url" value="jdbc:mysql://211.238.142.97/newlecture?autoReconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-       <property name="username" value="sist" />
-       <property name="password" value="cclass"/>
-       
-       <property name="removeAbandoned" value="true"/>
-	   <property name="initialSize" value="20" />
-	   <property name="maxActive" value="30" />
-	</bean>
-    
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource" />
-      <property name="mapperLocations" value="classpath:com/newlecture/dao/mybatis/mapper/*.xml" />
-    </bean>
-   
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-      <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+    <!-- 멀티파트 데이터에 대한 설정 -->
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 
+         <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="314572800" />
     </bean>
     
-    <bean class="com.newlecture.dao.mybatis.MyBatisNoteDao"/>
-    
-    <bean class="com.newlecture.service.NoteService"/>
-    <bean class="com.newlecture.service.member.NoteService"/>
-
 	<!-- 외부파일로 컨트롤러 설정하는 방법 -->
 	<!-- <bean name="/index" class="com.newlecture.controller.IndexController"/>
 	<bean name="/note/list" class="com.newlecture.note.controller.ListController"/>

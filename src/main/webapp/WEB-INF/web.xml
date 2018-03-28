@@ -21,14 +21,27 @@
 	<welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
+  <!-- 이벤트 컨트롤할 리스너 (디스패처 서블릿이 설정파일을 읽어왔을때 추가적으로 아래 설정파일을 더 읽어옴 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        /WEB-INF/spring/service-context.xml
+        /WEB-INF/spring/security-context.xml
+    </param-value>
+  </context-param>
+  
   <servlet>
   	<servlet-name>dispatcher</servlet-name>
   	<!-- <servlet-class>com.newlecture.controller.DispatcherController</servlet-class> -->
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<!-- <init-param>
-  		<param-name>path</param-name>
-  		<param-value>/WEB-INF/mapper.properties</param-value>
-  	</init-param> -->
+  	<!-- init-param <== 설정파일 로드할 위치를 지정 -->
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+  	</init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>dispatcher</servlet-name>
