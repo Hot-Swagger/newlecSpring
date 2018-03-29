@@ -1,5 +1,7 @@
 package com.newlecture.service.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.newlecture.dao.NoteDao;
@@ -15,6 +17,13 @@ public class NoteService {
 		int result = noteDao.insert(note);
 		
 		return result;
+	}
+
+	public List<Note> getNoteList(Integer page) {
+		
+		List<Note> list = noteDao.getList(page);
+		
+		return list;
 	}
 
 }

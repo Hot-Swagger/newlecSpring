@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,28 +30,30 @@ public class NoteController {
 	private NoteService service;
 	
 	@RequestMapping("list")
-	public String list() {
-		
-		return "member/note/list";
+	public String list(@RequestParam(value="p", defaultValue="1") Integer page, Model model) {
+
+		List<Note> notes = service.getNoteList(page);
+		model.addAttribute("notes", notes);
+		return "member.note.list";
 	}
 	
 	@RequestMapping("detail")
 	public String detail() {
 	
-		return "member/note/detail";
+		return "member.note.detail";
 	}
 	
 	@RequestMapping("edit")
 	public String edit() {
 		
-		return "member/note/edit";
+		return "member.note.edit";
 	}
 	
 	// 요청방식에 따른 매서드 분기가 가능하다.
 	@RequestMapping(value="reg", method=RequestMethod.GET)
 	public String reg() {
 		
-		return "member/note/reg";
+		return "member.note.reg";
 	}
 	
 	// 요청방식에 따른 매서드 분기가 가능하다.
