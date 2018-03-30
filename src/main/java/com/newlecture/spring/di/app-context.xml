@@ -12,16 +12,33 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
         
+        <context:component-scan base-package="com.newlecture.spring.di"/>
+        <!-- <context:annotation-config/>	component-scan은 anntation-config를 상속받고 있으므로 같이 사용할 필요 없다 -->
+        
         <!-- 
 		Exam exam = new Exam();
     	FlowExamConsole console = new FlowExamConsole();
     	console.setExam(exam);
     	 -->
-    	 
-    	<bean name="exam" class="com.newlecture.spring.di.Exam" />
-    	<bean name="console" class="com.newlecture.spring.di.FlowExamConsole">
-    		<property name="exam" ref="exam" />	<!-- el표현식처럼 setter생략해서 name 지정한다 (ex)setExam => exam -->
+    	<!--  
+    	<bean name="exam1" class="com.newlecture.spring.di.Exam">
+    		<constructor-arg value="10" />
+    		<constructor-arg value="20" />
+    		<constructor-arg value="30" />
     	</bean>
+    	<bean name="exam2" class="com.newlecture.spring.di.Exam">
+    		<constructor-arg value="30" />
+    		<constructor-arg value="40" />
+    		<constructor-arg value="70" />
+    	</bean> -->
+    	<bean name="console" class="com.newlecture.spring.di.FlowExamConsole">
+			<!-- <constructor-arg ref="exam" /> -->	<!-- 생성자 이용한 조립방법 -->
+    		<!-- <property name="exam" ref="exam" />	el표현식처럼 setter생략해서 name 지정한다 (ex)setExam => exam -->
+    	</bean>
+    	<!-- <bean name="console" class="com.newlecture.spring.di.FlowExamConsole">
+			<constructor-arg ref="exam" />	생성자 이용한 조립방법
+    		<property name="exam" ref="exam" />	el표현식처럼 setter생략해서 name 지정한다 (ex)setExam => exam
+    	</bean> -->
         
 </beans>
 

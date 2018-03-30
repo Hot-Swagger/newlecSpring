@@ -8,8 +8,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Hello world!
  *
  */
-public class App 
-{
+public class App {
+		
     public static void main( String[] args ) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException
     {
     	//GridExamConsole console = new GridExamConsole();
@@ -20,7 +20,7 @@ public class App
     	FileInputStream fis = new FileInputStream(className);
     	properties.load(fis);
     	ExamConsole console = (ExamConsole)Class
-    			.forName(properties.getProperty("console"))	// 생성할 개체를 선택하는 부분
+    			.forName(properties.getProperty("consdsole"))	// 생성할 개체를 선택하는 부분
     			.newInstance();	// 객체를 생성하는 부분
         console.input();
         console.print();*/
@@ -35,7 +35,7 @@ public class App
     	ClassPathXmlApplicationContext 콩자루 = new ClassPathXmlApplicationContext("com/newlecture/spring/di/app-context.xml"); 
     	
     	ExamConsole console = (ExamConsole)콩자루.getBean("console");
-    	console.input();
+    	//console.input();
     	console.print();
     }
 }
