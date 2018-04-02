@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- <context:component-scan base-package="com.newlecture.spring.di"/> -->
+	<!-- <context:annotation-config/> component-scan은 anntation-config를 상속받고 
+		있으므로 같이 사용할 필요 없다 -->
+
+
+
+
+	<bean name="exam" class="com.newlecture.spring.di.aop.Exam" />
+
+	<bean name="target"
+		class="com.newlecture.spring.di.aop.FlowExamConsole">
+		<constructor-arg ref="exam" />
+	</bean>
+	<!-- id는 유일한 식별자, name은 별칭으로 여러개를 붙여줄수 있다 -->
+	<bean id="before" name="before" class="com.newlecture.spring.di.aop.LogBeforeAdvice"/>
+	<bean id="around" name="around" class="com.newlecture.spring.di.aop.LogAroundAdvice"/>
+
+	<!-- proxy -->
+	<bean id="console" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>	<!-- 배열 or 컬렉션을 대입하는 태그 -->
+				<value>before</value>
+				<value>around</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
+

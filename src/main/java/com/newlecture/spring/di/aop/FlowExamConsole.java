@@ -1,9 +1,9 @@
-package com.newlecture.spring.di;
+package com.newlecture.spring.di.aop;
 
+import java.util.Date;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public class FlowExamConsole implements ExamConsole {
 
@@ -22,6 +22,9 @@ public class FlowExamConsole implements ExamConsole {
 	}
 
 	public void input() {
+		
+		//System.out.println("start : " + new Date());
+		
 		Scanner scan = new Scanner(System.in);
 		int kor;
 		int eng;
@@ -41,9 +44,14 @@ public class FlowExamConsole implements ExamConsole {
 		exam.setKor(kor);
 		exam.setEng(eng);
 		exam.setMath(math);
+		
+		//System.out.println("end : " + new Date());
 	}
 
 	public void print() {
+		
+		//System.out.println("start : " + new Date());
+		
 		int kor = exam.getKor();
 		int eng = exam.getEng();
 		int math = exam.getMath();
@@ -59,9 +67,13 @@ public class FlowExamConsole implements ExamConsole {
 		System.out.printf("math : %3d\n", math);
 		System.out.printf("total : %3d\n", total);
 		System.out.printf("avg : %+6.2f\n", avg);
+		
+		//System.out.println("end : " + new Date());
 	}
 
 	public void setExam(Exam exam) {
+		//System.out.println("start : " + new Date());
 		this.exam = exam;
+		//System.out.println("end : " + new Date());
 	}
 }

@@ -1,24 +1,17 @@
-package com.newlecture.spring.di;
+package com.newlecture.spring.di.aop;
 
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+public class GridExamConsole implements ExamConsole {
 
-public class FlowExamConsole implements ExamConsole {
-
-	@Autowired()
-	/*@Qualifier("exam2")*/
 	private Exam exam;
 
-	public FlowExamConsole() {
-		//exam = new Exam();
+	public GridExamConsole() {
+		exam = new Exam();
 	}
 
-	public FlowExamConsole(Exam exam) {
-
+	public GridExamConsole(Exam exam) {
 		this.exam = exam;
-
 	}
 
 	public void input() {
@@ -52,16 +45,10 @@ public class FlowExamConsole implements ExamConsole {
 
 		System.out.println("┌──────────────────────────────────────────┐");
 		System.out.println("│                Exam Print                │");
-		System.out.println("└──────────────────────────────────────────┘");
-
-		System.out.printf("kor : %3d\n", kor);
-		System.out.printf("eng : %3d\n", eng);
-		System.out.printf("math : %3d\n", math);
-		System.out.printf("total : %3d\n", total);
-		System.out.printf("avg : %+6.2f\n", avg);
-	}
-
-	public void setExam(Exam exam) {
-		this.exam = exam;
+		System.out.println("├────────┬───────┬───────┬───────┬─────────┤");
+		System.out.println("│   kor  │  eng  │  math │ total │   avg   │");
+		System.out.println("├────────┼───────┼───────┼───────┼─────────┤");
+		System.out.printf("│   %3d  │  %3d  │  %3d  │  %3d  │  %+6.2f │\n", kor, eng, math, total, avg);
+		System.out.println("└────────┴───────┴───────┴───────┴─────────┘");
 	}
 }

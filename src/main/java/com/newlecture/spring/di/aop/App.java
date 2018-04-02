@@ -1,9 +1,9 @@
-package com.newlecture.spring.di;
+package com.newlecture.spring.di.aop;
 
 import java.io.IOException;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hello world!
@@ -33,14 +33,14 @@ public class App {
     	console.setExam(exam);
     	*/
     	
-    	/*xml설정파일을 불러와서 사용하는 방법
-    	ApplicationContext 콩자루 = new ClassPathXmlApplicationContext("com/newlecture/spring/di/app-context.xml");*/ 
+    	//xml설정파일을 불러와서 사용하는 방법
+    	ApplicationContext 콩자루 = new ClassPathXmlApplicationContext("com/newlecture/spring/di/aop/app-context.xml"); 
     	
-    	/*어노테이션(자바코드)으로 모두 설정하는 방법*/
+    	/*어노테이션(자바코드)으로 모두 설정하는 방법
     	ApplicationContext 콩자루 = new AnnotationConfigApplicationContext(NewlecAppConfig.class);	//	구성을 담고있는 클래스
-    	
+    	*/    	
     	ExamConsole console = (ExamConsole)콩자루.getBean("console");
-    	//console.input();
+    	console.input();
     	console.print();
     }
 }
