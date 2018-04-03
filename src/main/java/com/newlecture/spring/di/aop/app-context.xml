@@ -17,8 +17,6 @@
 		있으므로 같이 사용할 필요 없다 -->
 
 
-
-
 	<bean name="exam" class="com.newlecture.spring.di.aop.Exam" />
 
 	<bean name="target"
@@ -26,19 +24,66 @@
 		<constructor-arg ref="exam" />
 	</bean>
 	<!-- id는 유일한 식별자, name은 별칭으로 여러개를 붙여줄수 있다 -->
-	<bean id="before" name="before" class="com.newlecture.spring.di.aop.LogBeforeAdvice"/>
-	<bean id="around" name="around" class="com.newlecture.spring.di.aop.LogAroundAdvice"/>
+	<bean id="before" name="before"
+		class="com.newlecture.spring.di.aop.LogBeforeAdvice" />
+	<bean id="around" name="around"
+		class="com.newlecture.spring.di.aop.LogAroundAdvice" />
+	<bean id="after" name="after"
+		class="com.newlecture.spring.di.aop.LogReturnAdvice" />
+	<bean id="throws" name="throws"
+		class="com.newlecture.spring.di.aop.LogThrowsAdvice" />
 
-	<!-- proxy -->
-	<bean id="console" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<!-- proxy --> <!-- (1)타겟의 모든 메서드를 위빙하는 방법 -->
+	<bean id="console"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="target" />
 		<property name="interceptorNames">
-			<list>	<!-- 배열 or 컬렉션을 대입하는 태그 -->
-				<value>before</value>
+			<list>	<!-- (1)배열 or 컬렉션을 대입하는 태그 -->
+				<!-- <value>before</value>
 				<value>around</value>
+				<value>after</value>
+				<value>throws</value> -->
+				
+				<!-- (2)Adviser를 통해서 프록시 호출을 함으로써 조인포인트를 제한할수 있다 -->
+				<!-- <value>methodNameAdvisor</value> -->
+				
+				<!-- (3)다른 Adviser 사용 -->
+				<!-- <value>matchAdviser</value> -->
+				
+				<!-- (4)패턴을 사용한 Adviser 사용 -->
+				<value>expAdvier</value>
 			</list>
 		</property>
 	</bean>
 
+	<!-- (2)조인포인트로 활용할 메서드 목록 --> <!-- PointCuts -->
+	<!-- <bean id="methodNamePointcut"
+		class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="input" />
+	</bean> -->
+
+	<!-- (2)원하는 메서드(메서드이름을 활용하여)만 위빙하는 방법(조인포인트) --> <!-- Adviser -->
+	<!-- <bean id="methodNameAdvisor"
+		class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="methodNamePointcut" />
+		<property name="advice" ref="before" />
+	</bean> -->
+	
+	<!-- (3)위와 다른 타입의 메서드이름을 활용하는 Adviser (PointCuts + Adviser) --> 
+	<!-- <bean id="matchAdviser" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="mappedName" value="input" />
+		<property name="advice" ref="before" />
+	</bean> -->
+	
+	<!-- (4)패턴을 활용하는 Adviser (정규식을 사용한다) -->
+	<bean id="expAdvier" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="patterns">
+			<list>
+				<!-- 패키지명+클래스명+메서드명의 패턴 -->
+				<value>.*Console.print</value>
+			</list>
+		</property>
+		<property name="advice" ref="throws" />
+	</bean>
 </beans>
 

@@ -4,6 +4,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.util.StopWatch;
 
+/*주업무가 처리되는 앞뒤 영역에 보조업무를 수행할 수 있도록 하는 로직*/
 public class LogAroundAdvice implements MethodInterceptor{
 
 	@Override

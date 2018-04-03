@@ -16,7 +16,8 @@ public class Exam {
 
 	public float avg() {
 
-		return total() / 3.0f;
+		//return total() / 3.0f;
+		return total() / 0;
 	}
 
 	public Exam() {

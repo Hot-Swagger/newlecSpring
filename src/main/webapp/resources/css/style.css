@@ -34,6 +34,7 @@ h1,h2,h3,h4,h5,h6{
 .header{
 	height: 45px;
 	width: 100%;
+	top: 0;
 	position: fixed;
 	background: #ffffff;
 	border-bottom: 1px solid #e9e9e9;
@@ -69,8 +70,31 @@ h1,h2,h3,h4,h5,h6{
 				}
 				
 /* --- .main ------------------------------------------------------------ */
+.text {
+           position: relative;     
+         }
+         
+         .text-concat {
+           position: relative;
+           display: inline-block;
+           word-wrap: break-word;
+           overflow: hidden;
+           max-height: 2.4em; /* (Number of lines you want visible) * (line-height) */
+           line-height: 1.2em;
+           text-align:justify;
+         }
+         
+         .text.ellipsis::after {
+           content: "...";
+           position: absolute;
+           right: -12px; 
+           bottom: 4px;
+         }
+
+
+
 .main{
-   padding-top: 45px;
+   margin-top: 46px;
 }
 
    .main .note-list{
@@ -102,6 +126,9 @@ h1,h2,h3,h4,h5,h6{
          
          .main .note-list ul li > div:not(first-child){
          	margin-top: 5px;
+			/* white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis; */
          }
          
          .main .note-list ul li > div:last-child{
