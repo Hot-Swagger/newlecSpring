@@ -8,7 +8,7 @@
 			<ul>
 				<c:forEach var="note" items="${notes}">
 				<li class="text">
-					<div><a href="">${note.title}</a></div>
+					<div><a href="${note.id}">${note.title}</a></div>
 					<div class="text ellipsis">
 						<span class="text-concat">${note.content}</span>
 					</div>

@@ -1,6 +1,6 @@
 package com.newlecture.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Note {
 	private long id;
