@@ -82,6 +82,8 @@ h1,h2,h3,h4,h5,h6{
            max-height: 2.4em; /* (Number of lines you want visible) * (line-height) */
            line-height: 1.2em;
            text-align:justify;
+           float: left;
+           vertical-align: middle;
          }
          
          .text.ellipsis::after {
@@ -120,11 +122,21 @@ h1,h2,h3,h4,h5,h6{
             padding-bottom: 5px;
          }
          
+		.main .note-list ul li > div:nth-child(2){
+			/* display: -wekit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3; */
+			overflow: hidden;
+			
+			line-height: 1.2em;
+			max-height: 2.4em;
+		}
+         
          .main .note-list ul li .title{         /* 구조가 바뀔 경우 */
             
          }
          
-         .main .note-list ul li > div:not(first-child){
+         .main .note-list ul li > div:not(:first-child){
          	margin-top: 5px;
 			/* white-space: nowrap;
 			overflow: hidden;
@@ -140,6 +152,9 @@ h1,h2,h3,h4,h5,h6{
             .main .note-list ul li > div > span:first-child {
                color: #6bacca;
             }
+		
+		
+		
             
 .btn-list{
 	border: 1px solid red;
@@ -170,6 +185,8 @@ h1,h2,h3,h4,h5,h6{
 			background: blue;
 			z-index: 100;
 		}
+		
+		
 #edit-button.show{
 	bottom: 60px;
 }

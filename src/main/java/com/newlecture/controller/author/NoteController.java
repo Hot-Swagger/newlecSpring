@@ -1,4 +1,4 @@
-package com.newlecture.controller.member;
+package com.newlecture.controller.author;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.newlecture.entity.Note;
-import com.newlecture.service.member.NoteService;
+import com.newlecture.service.author.NoteService;
 
-@Controller("MemberNoteController")
-@RequestMapping("/member/note/")
+@Controller("authorNoteController")
+@RequestMapping("/author/note/")
 public class NoteController {
 	
 	//컨트롤러 각각의 서비스는 독립적으로 생성해야한다. 집중화를 하는 방법은 프로젝트 협업을 위해 좋은 방법이 아님
@@ -35,7 +35,7 @@ public class NoteController {
 
 		List<Note> notes = service.getNoteList(page);
 		model.addAttribute("notes", notes);
-		return "member.note.list";
+		return "author.note.list";
 	}
 	
 	@RequestMapping("{id}")
@@ -44,20 +44,20 @@ public class NoteController {
 		Note note = service.getNote(id);
 		model.addAttribute("note", note);
 	
-		return "member.note.detail";
+		return "author.note.detail";
 	}
 	
 	@RequestMapping("edit")
 	public String edit() {
 		
-		return "member.note.edit";
+		return "author.note.edit";
 	}
 	
 	// 요청방식에 따른 매서드 분기가 가능하다.
 	@RequestMapping(value="reg", method=RequestMethod.GET)
 	public String reg() {
 		
-		return "member.note.reg";
+		return "author.note.reg";
 	}
 	
 	// 요청방식에 따른 매서드 분기가 가능하다.

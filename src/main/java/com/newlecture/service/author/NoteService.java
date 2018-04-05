@@ -1,4 +1,4 @@
-package com.newlecture.service.member;
+package com.newlecture.service.author;
 
 import java.util.List;
 import java.util.Set;
@@ -30,10 +30,17 @@ public class NoteService {
 			String content = n.getContent();
 			if(content == null) continue;
 			Document document = Jsoup.parse(content);
+			Element img = document.selectFirst("img");
 			String text = document.text();
 			if(text.length() > 250)
 				text = text.substring(0, 249);
-			n.setContent(text);
+			
+			if(img == null) {
+				n.setContent(text);
+			}
+			else {
+				n.setContent(img.toString()+text);
+			}
 		}
 		
 		return list;
@@ -42,21 +49,7 @@ public class NoteService {
 	public Note getNote(Integer id) {
 		
 		Note result = noteDao.get(id);
-		String content = result.getContent();
-		Document document = Jsoup.parse(content);
-		Element img = document.selectFirst("img");
-		if(img != null) {
-			Set<String> clsName = img.classNames();
-			boolean hasClsName = false;
-			for(String n: clsName) {
-				if(n.equals("detail-main-img")){
-					hasClsName = true;
-				}
-			}
-			if(!hasClsName)
-				img.addClass("detail-main-img");
-		}
-		result.setContent(document.toString());
+		
 		return result;
 	}
 
