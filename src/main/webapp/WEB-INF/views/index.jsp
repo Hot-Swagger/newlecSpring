@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=1">
-<link href="resources/css/style.css" type ="text/css" rel ="stylesheet" />
+<link href="resource/css/style.css" type ="text/css" rel ="stylesheet" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -16,8 +16,8 @@
 		<nav class="main-menu">
 			<h1 class="hidden">메인메뉴</h1>
 			<ul>
-				<li><a href=""><img src="resources/images/ic_menu_black_24dp_1x.png" alt="메뉴"></a></li>
-				<li><a href=""><img src="resources/images/ic_search_black_24dp_1x.png" alt="검색"></a></li>
+				<li><a href=""><img src="resource/images/ic_menu_black_24dp_1x.png" alt="메뉴"></a></li>
+				<li><a href=""><img src="resource/images/ic_search_black_24dp_1x.png" alt="검색"></a></li>
 				<!-- <li></li> -->
 			</ul>
 		</nav>

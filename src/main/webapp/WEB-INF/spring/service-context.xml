@@ -35,7 +35,10 @@
     </bean>
     
     <bean class="com.newlecture.dao.mybatis.MyBatisNoteDao"/>
+    
+    <bean class="com.newlecture.service.MemberService"/>
     <bean class="com.newlecture.service.NoteService"/>
+    
     <bean class="com.newlecture.service.author.NoteService"/>
     
 </beans>

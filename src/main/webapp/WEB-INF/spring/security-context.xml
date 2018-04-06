@@ -21,22 +21,30 @@
 	<!-- auto-config를 통해 AOP 컷팅슬라이스로 프라이머리컨선 실행마다 삽입된다
 	<http auto-config="true"> -->
 	<http>
-		<form-login login-page="/member/login"/>
+		<!-- 로그인설정 -->
+		<form-login login-page="/member/login" default-target-url="/index"/>
+		<!-- 로그아웃 설정 -->
+		<logout logout-success-url="/index" invalidate-session="true"/>
 		<!-- 접근 가능한 패턴과 권한자 지정 -->
 		<intercept-url pattern="/author/**" access="hasRole('ROLE_AUTHOR')"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<!-- 크로스사이트 요청 위조를 방지하기 위해 csrf키를 삽입하는 과정이 필요함 -->
 		<csrf disabled="true"/>
 	</http>
-	
-		
+					
 	<authentication-manager>
 		<authentication-provider>
-			<user-service>
-				<!-- pwd인코더를 사용하지 않고 테스트 해보기위해 플레인text 지정해주는 명령어 {noop} -->
+			<password-encoder hash="bcrypt"/>
+			<jdbc-user-service 
+				data-source-ref="dataSource"
+				users-by-username-query="select id, pwd AS password, 1 enabled from Member where id=?"
+				authorities-by-username-query="select memberId AS id, roleId AS authority from MemberRole where memberId=?"
+			/>
+			<!-- <user-service>
+				pwd인코더를 사용하지 않고 테스트 해보기위해 플레인text 지정해주는 명령어 {noop}
 				<user name="newlec" password="{noop}111" authorities="ROLE_AUTHOR,ROLE_ADMIN"/>
 				<user name="dragon" password="{noop}111" authorities="ROLE_AUTHOR"/>
-			</user-service>
+			</user-service> -->
 		</authentication-provider>
 	</authentication-manager>
 	<context:annotation-config /><!-- Autowired가 필요한 곳에서 설정함 -->

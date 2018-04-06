@@ -4,20 +4,27 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <main>
 	<section class="main">
-		<h1>로그인 폼</h1>
-		<form action="${root}/login" method="post">
+		<h1>회원가입 폼</h1>
+		<form method="post">
 			<fieldset>
-				<legend>로그인 필드</legend>
+				<legend>회원가입 필드</legend>
 				<table>
 					<tr>
 						<th>아이디 : </th>
 						<!-- 스프링이 제공하는 login 기능의 name은 지정되어있다 -->
-						<td><input type="text" name="username" placeholder="아이디를 입력하세요."/></td>
+						<td><input type="text" name="id" placeholder="6~12자 이내의 영문 또는 숫자"/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 : </th>
-						<!-- 스프링이 제공하는 login 기능의 name은 지정되어있다 -->
-						<td><input type="password" name="password"/></td>
+						<td><input type="password" name="pwd"/></td>
+					</tr>
+					<tr>
+						<th>이름 : </th>
+						<td><input type="text" name="name"/></td>
+					</tr>
+					<tr>
+						<th>사진 : </th>
+						<td><input type="file" name="file"/></td>
 					</tr>
 					<tr>
 						<td colspan="2">
