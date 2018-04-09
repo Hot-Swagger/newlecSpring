@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+<hibernate-mapping>
+	<!-- entity (name=엔티티클래스, table=db테이블) 클래스 -->
+	<class name="com.newlecture.hb.entity.Note" table="Note">
+		<!-- 엔티티 필드명과 db컬럼명이 같다면 pk만 넣어주면 된다 -->
+		<id name="id"></id>
+		<property name="title"></property>
+		<!-- <property name="title"></property>
+		<property name="content"></property>
+		<property name="id"></property> -->
+	</class>
+</hibernate-mapping>
