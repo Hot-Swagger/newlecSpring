@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.newlecture.dao.NoteDao">
 
 	<!-- <select id="getList" resultType="com.newlecture.entity.Note">
@@ -21,3 +22,24 @@
 	</insert>
 
 </mapper>
+  
+<!--   mybatis용
+<mapper namespace="com.newlecture.dao.NoteDao">
+
+	<select id="getList" resultType="com.newlecture.entity.Note">
+		select * from Note 
+		limit ${(_parameter-1)*15},15
+		가져오고 싶은 레코드 갯수를 써주면 된다 (mysql)
+	</select>
+	
+	mybatis를 이용하여 인터페이스를 구현하는 방법
+	<select id="get" resultType="com.newlecture.entity.Note">
+		select * from Note where id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.newlecture.entity.Note">
+		insert into Note(title, content, writerId)
+		values(#{title},#{content},#{writerId})
+	</insert>
+
+</mapper> -->

@@ -1,10 +1,11 @@
 package com.newlecture.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.newlecture.entity.Member;
 
-@Component
+@Service
 public class MemberService {
 
 	public int insertMember(Member member) {
