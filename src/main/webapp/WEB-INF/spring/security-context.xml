@@ -19,7 +19,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- auto-config를 통해 AOP 컷팅슬라이스로 프라이머리컨선 실행마다 삽입된다
-	<http auto-config="true"> -->
+	<http auto-config="true" /> -->
 	<http>
 		<!-- 로그인설정 -->
 		<form-login login-page="/member/login" default-target-url="/index"/>
